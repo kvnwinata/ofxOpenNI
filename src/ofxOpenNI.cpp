@@ -1172,7 +1172,8 @@ void ofxOpenNI::update(){
         map<XnUserID, ofxOpenNIUser>::iterator it;
         for(it = currentTrackedUsers.begin(); it != currentTrackedUsers.end(); it++){
             ofxOpenNIUser & user = it->second;
-            if(user.getForceReset()){
+            // KEVIN: do not force reset, causes discrepancy between ofxOpenNI-tracked users and openNI-tracked users
+            if(false && user.getForceReset()){
                 ofLogVerbose(LOG_NAME) << "Force stopping user tracking" << user.getXnID();
                 resetUserTracking(user.getXnID(), user.bForceRestart);
                 user.bForceRestart = false;
